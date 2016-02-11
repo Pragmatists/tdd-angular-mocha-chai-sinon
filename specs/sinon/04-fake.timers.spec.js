@@ -3,13 +3,12 @@ var myClass = {
         setTimeout(cb, 1000);
     }
 };
-
+//TODO make the assertions passing
 describe('FakeTimers', function () {
 
     var clock,
         spy,
-        cb = function () {
-        };
+        cb = function () {};
 
     beforeEach(function () {
         spy = sinon.spy(cb);
@@ -19,23 +18,22 @@ describe('FakeTimers', function () {
         clock.restore();
     });
 
-    it('test 1 - timeouts', function () {
+    it('can be used to test timeouts', function () {
         clock = sinon.useFakeTimers();
 
         myClass.doTimeout(spy);
-        clock.tick(1010);
+        //TODO use clock to pass the timeout needed to call callback
 
-        expect(spy).to.have.been.called;
+        //expect(spy).to.have.been.called;
     });
 
-    it('test 2 - fake dates', function () {
+    it('can be used to fake dates', function () {
         var initialDate = 1357423755011,
-            clock = sinon.useFakeTimers(initialDate),
-            date1 = Date.now();
+            clock = sinon.useFakeTimers(initialDate);
 
-        clock.tick(1000);
+        //clock.tick(1000);
         var date2 = Date.now();
 
-        expect(date2).to.equal(1357423756011);
+        //expect(date2).to.equal(1357423756011);
     });
 });

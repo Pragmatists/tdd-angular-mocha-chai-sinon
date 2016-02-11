@@ -22,24 +22,28 @@ var myDep = {
 
 describe('Spy', function() {
 
-
-	it('test 1 - spy on callback', function() {
+	it('can spy on callback', function() {
 		var spy = sinon.spy();
+
 		mySUT.callCallback(spy);
-		expect(spy).to.have.been.called;
+
+		//expect(spy) //have been called;
 	});
 
-	it('test 2 - spy on real callback function implementation', function() {
+	it('can spy on real callback function implementation', function() {
 		var spy = sinon.spy(realCallback),
 			returnValue = mySUT.callCallbackWithReturnValue(spy);
-		expect(spy).to.have.been.called;
-		expect(returnValue).to.equal(4);
+
+		//expect(spy) //have been called;
+		//expect(returnValue) //is 4;
 	});
 
-	it('test 3 - spy on method of an object', function() {
-		var spy = sinon.spy(myDep, 'someMethod'),
-			returnValue = mySUT.callDependency(myDep);
-		expect(spy).to.have.been.called;
-		expect(returnValue).to.equal(10);
+	it('can spy on method of an object', function() {
+		var spy = sinon.spy(myDep, 'someMethod');
+
+		var	returnValue = mySUT.callDependency(myDep);
+
+		//expect(spy) //have been called;
+		//expect(returnValue) //is 10;
 	});
 });

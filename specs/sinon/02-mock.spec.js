@@ -13,18 +13,22 @@ Character.prototype.takeDamage = function() {
 	// ...
 };
 
-describe('Stub', function() {
+describe('Mock', function() {
 
-	it('test 1 - sub object instance', function() {
+
+	it('mocks object instance', function() {
 		var combat = new Combat(),
-			defender = sinon.stub(new Character()),
-			attacker = sinon.stub(new Character());
+			attacker = sinon.stub(new Character()),
+			defender = new Character(),
+			mockDefender = sinon.mock(defender),
+			expectation = mockDefender.expects("takeDamage").once().withArgs(5); // You state your success criteria upfront
 
 		attacker.damage = 5;
+
 		attacker.calculateHit.returns(true);
 
 		combat.attack(attacker, defender);
 
-		expect(defender.takeDamage).to.have.been.calledOnce.calledWith(5);
+		//TODO verify expectation;
 	});
 });

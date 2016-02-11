@@ -13,22 +13,18 @@ Character.prototype.takeDamage = function() {
 	// ...
 };
 
-describe('Mock', function() {
+describe('Stub', function() {
 
-
-	it('test 1 - mock object instance', function() {
+	it('test 1 - sub object instance', function() {
 		var combat = new Combat(),
-			attacker = sinon.stub(new Character()),
-			defender = new Character(),
-			mockDefender = sinon.mock(defender),
-			expectation = mockDefender.expects("takeDamage").once().withArgs(5);
+			defender = sinon.stub(new Character()),
+			attacker = sinon.stub(new Character());
 
 		attacker.damage = 5;
-
 		attacker.calculateHit.returns(true);
 
 		combat.attack(attacker, defender);
 
-		expectation.verify();
+		//expect(defender.takeDamage) //was called once with parameter = 5;
 	});
 });

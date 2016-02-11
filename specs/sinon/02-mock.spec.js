@@ -16,12 +16,12 @@ Character.prototype.takeDamage = function() {
 describe('Mock', function() {
 
 
-	it('test 1 - mock object instance', function() {
+	it('mocks object instance', function() {
 		var combat = new Combat(),
 			attacker = sinon.stub(new Character()),
 			defender = new Character(),
 			mockDefender = sinon.mock(defender),
-			expectation = mockDefender.expects("takeDamage").once().withArgs(5);
+			expectation = mockDefender.expects("takeDamage").once().withArgs(5); // You state your success criteria upfront
 
 		attacker.damage = 5;
 

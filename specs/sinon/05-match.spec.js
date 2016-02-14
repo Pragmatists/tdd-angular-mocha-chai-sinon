@@ -18,11 +18,11 @@ describe('Spy call argument can be asserted with', function() {
 
 	it('same matcher', function() {
 		var spy = sinon.spy(),
-			obj = {myyProp:1};
+			obj = {myProp: 1};
 
 		spy(obj);
 
-		//expect(spy) //called with arg same as 'obj';
+		//expect(spy) //called with 'obj' (exactly the same object);
 	});
 
 	it('has matcher - pass', function() {

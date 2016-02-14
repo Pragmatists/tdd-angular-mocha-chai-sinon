@@ -1,30 +1,36 @@
-var Combat = function(){};
-Combat.prototype.attack = function(attacker, defender){
-	if(attacker.calculateHit(defender)) {
-		defender.takeDamage(attacker.damage);
-	}
-};
+(function () {
 
-var Character = function(){};
-Character.prototype.calculateHit = function() {
-	// ...
-};
-Character.prototype.takeDamage = function() {
-	// ...
-};
+    var Combat = function () {
+    };
+    Combat.prototype.attack = function (attacker, defender) {
+        if (attacker.calculateHit(defender)) {
+            defender.takeDamage(attacker.damage);
+        }
+    };
 
-describe('Stub', function() {
+    var Character = function () {
+    };
+    Character.prototype.calculateHit = function () {
+        // ...
+    };
+    Character.prototype.takeDamage = function () {
+        // ...
+    };
 
-	it('test 1 - sub object instance', function() {
-		var combat = new Combat(),
-			defender = sinon.stub(new Character()),
-			attacker = sinon.stub(new Character());
+    describe('Stub', function () {
 
-		attacker.damage = 5;
-		attacker.calculateHit.returns(true);
+        it('test 1 - sub object instance', function () {
+            var combat = new Combat(),
+                defender = sinon.stub(new Character()),
+                attacker = sinon.stub(new Character());
 
-		combat.attack(attacker, defender);
+            attacker.damage = 5;
+            attacker.calculateHit.returns(true);
 
-		//expect(defender.takeDamage) //was called once with parameter = 5;
-	});
-});
+            combat.attack(attacker, defender);
+
+            //expect(defender.takeDamage) //was called once with parameter = 5;
+        });
+    });
+
+})();

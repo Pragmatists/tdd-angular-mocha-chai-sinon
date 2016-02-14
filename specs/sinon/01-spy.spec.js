@@ -1,49 +1,53 @@
-var mySUT = {
-	callCallback : function(cb) {
-		cb();
-	},
-	callCallbackWithReturnValue : function(cb) {
-		return cb();
-	},
-	callDependency : function(dep) {
-		return dep.someMethod();
-	}
-};
+(function () {
 
-function realCallback() {
-	return 4;
-}
+    var mySUT = {
+        callCallback: function (cb) {
+            cb();
+        },
+        callCallbackWithReturnValue: function (cb) {
+            return cb();
+        },
+        callDependency: function (dep) {
+            return dep.someMethod();
+        }
+    };
 
-var myDep = {
-	someMethod: function() {
-		return 10;
-	}
-};
+    function realCallback() {
+        return 4;
+    }
 
-describe('Spy', function() {
+    var myDep = {
+        someMethod: function () {
+            return 10;
+        }
+    };
 
-	it('can spy on callback', function() {
-		var spy = sinon.spy();
+    describe('Spy', function () {
 
-		mySUT.callCallback(spy);
+        it('can spy on callback', function () {
+            var spy = sinon.spy();
 
-		//expect(spy) //have been called;
-	});
+            mySUT.callCallback(spy);
 
-	it('can spy on real callback function implementation', function() {
-		var spy = sinon.spy(realCallback),
-			returnValue = mySUT.callCallbackWithReturnValue(spy);
+            //expect(spy) //have been called;
+        });
 
-		//expect(spy) //have been called;
-		//expect(returnValue) //is 4;
-	});
+        it('can spy on real callback function implementation', function () {
+            var spy = sinon.spy(realCallback),
+                returnValue = mySUT.callCallbackWithReturnValue(spy);
 
-	it('can spy on method of an object', function() {
-		var spy = sinon.spy(myDep, 'someMethod');
+            //expect(spy) //have been called;
+            //expect(returnValue) //is 4;
+        });
 
-		var	returnValue = mySUT.callDependency(myDep);
+        it('can spy on method of an object', function () {
+            var spy = sinon.spy(myDep, 'someMethod');
 
-		//expect(spy) //have been called;
-		//expect(returnValue) //is 10;
-	});
-});
+            var returnValue = mySUT.callDependency(myDep);
+
+            //expect(spy) //have been called;
+            //expect(returnValue) //is 10;
+        });
+    });
+
+})();

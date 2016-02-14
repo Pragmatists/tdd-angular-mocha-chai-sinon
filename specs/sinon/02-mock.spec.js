@@ -1,34 +1,40 @@
-var Combat = function(){};
-Combat.prototype.attack = function(attacker, defender){
-	if(attacker.calculateHit(defender)) {
-		defender.takeDamage(attacker.damage);
-	}
-};
+(function () {
 
-var Character = function(){};
-Character.prototype.calculateHit = function() {
-	// ...
-};
-Character.prototype.takeDamage = function() {
-	// ...
-};
+    var Combat = function () {
+    };
+    Combat.prototype.attack = function (attacker, defender) {
+        if (attacker.calculateHit(defender)) {
+            defender.takeDamage(attacker.damage);
+        }
+    };
 
-describe('Mock', function() {
+    var Character = function () {
+    };
+    Character.prototype.calculateHit = function () {
+        // ...
+    };
+    Character.prototype.takeDamage = function () {
+        // ...
+    };
+
+    describe('Mock', function () {
 
 
-	it('mocks object instance', function() {
-		var combat = new Combat(),
-			attacker = sinon.stub(new Character()),
-			defender = new Character(),
-			mockDefender = sinon.mock(defender),
-			expectation = mockDefender.expects("takeDamage").once().withArgs(5); // You state your success criteria upfront
+        it('mocks object instance', function () {
+            var combat = new Combat(),
+                attacker = sinon.stub(new Character()),
+                defender = new Character(),
+                mockDefender = sinon.mock(defender),
+                expectation = mockDefender.expects("takeDamage").once().withArgs(5); // You state your success criteria upfront
 
-		attacker.damage = 5;
+            attacker.damage = 5;
 
-		attacker.calculateHit.returns(true);
+            attacker.calculateHit.returns(true);
 
-		combat.attack(attacker, defender);
+            combat.attack(attacker, defender);
 
-		//TODO verify expectation;
-	});
-});
+            //TODO verify expectation;
+        });
+    });
+
+})();
